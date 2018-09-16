@@ -1,4 +1,4 @@
-/*This is the main file for a Blackjack game, which is accompanies by poker.h and poker.cpp*/
+/*This is the main file for a Blackjack game, which is accompanied by poker.h and poker.cpp*/
 #include "poker.h"
 
 using namespace std;
@@ -7,9 +7,20 @@ void start_message();
 void game_message();
 void Game();
 int game_loop(Player &player, Player &dealer, Deck &deck);
+int dealer_loop(Player &player, Player &dealer, Deck &deck, int flag);
 
 int main() {
-	Game();
+	int flag;
+	while (true) { 
+		start_message();
+		cin >> flag;
+		if (flag == 1)
+			Game();
+		else if (flag == 2)
+			break;
+		else
+			cout << "Input should be 1 or 2." << endl;
+	}
 	return 0;
 }
 
@@ -33,15 +44,10 @@ void hand_message(Player player, Player dealer) {
 	dealer.dealer_show_hand();
 }
 
-int game_loop(Player &player, Player &dealer, Deck &deck) {
-	int flag;
+int hand_loop(int flag, Player &player, Deck &deck) {
 	int out_flag;
-	hand_message(player, dealer);
-	game_message();
-	cin >> flag;
 	if (flag == 1) {
 		player.hit(deck.return_card());
-		//cout << player.get_point_value() << endl;
 		if (player.get_point_value() > 21)
 			out_flag = 3;
 		else
@@ -51,6 +57,21 @@ int game_loop(Player &player, Player &dealer, Deck &deck) {
 		out_flag = 2;
 	else
 		cout << "input must be a 1 or 2." << endl;
+	return out_flag;
+}
+
+int game_loop(Player &player, Player &dealer, Deck &deck) {
+	int flag;
+	int out_flag;
+	while (true) {
+		hand_message(player, dealer);
+		game_message();
+		cin >> flag;
+		if (flag == 1 || flag == 2)
+			break;
+	}
+	out_flag = hand_loop(flag, player, deck);
+
 	return out_flag;
 }
 int dealer_loop(Player &player, Player &dealer, Deck &deck, int flag) {
@@ -76,11 +97,11 @@ int dealer_loop(Player &player, Player &dealer, Deck &deck, int flag) {
 	}
 	else if (flag == 1) {
 		cout << "Game Over." << endl;
-		out_flag == 2;
+		out_flag = 2;
 	}
 	else {
 		cout << "Error in dealer loop" << endl;
-		out_flag == 0;
+		out_flag = 0;
 	}
 	return out_flag;
 
@@ -107,7 +128,8 @@ void Game() {
 			else if (gl == 2)
 				break;
 			else if (gl == 3) {
-				cout << "You busted!" << endl; 
+				cout << "You busted!" << endl;
+				hand_message(player, dealer);
 				flag = 1; 
 				break;
 			}

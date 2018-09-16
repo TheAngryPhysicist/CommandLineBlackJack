@@ -6,6 +6,7 @@ const std::string Card::get_suit() {
 	case 1: return "Spades";
 	case 2: return "Diamonds"; 
 	case 3: return "Clubs";
+	default: return "Hearts";
 	}
 }
 const std::string Card::get_value() {
@@ -23,6 +24,7 @@ const std::string Card::get_value() {
 	case 10:  return "Jack";
 	case 11:  return "Queen";
 	case 12:  return "King";
+	default: return "Ace";
 	}
 }
 const int Card::get_point_value() {
@@ -40,6 +42,7 @@ const int Card::get_point_value() {
 	case 10:  return 10;
 	case 11:  return 10;
 	case 12:  return 10;
+	default: return 10;
 	}
 }
 void Hand::get_all_cards() {
