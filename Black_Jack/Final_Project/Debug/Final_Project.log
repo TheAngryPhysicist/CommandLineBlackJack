@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\home\documents\visual studio 2015\projects\final_project\final_project\main.cpp(79): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\home\documents\visual studio 2015\projects\final_project\final_project\main.cpp(83): warning C4553: '==': operator has no effect; did you intend '='?
+  Final_Project.vcxproj -> c:\users\home\documents\visual studio 2015\Projects\Final_Project\Debug\Final_Project.exe
+  Final_Project.vcxproj -> c:\users\home\documents\visual studio 2015\Projects\Final_Project\Debug\Final_Project.pdb (Full PDB)
